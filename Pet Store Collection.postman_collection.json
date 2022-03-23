@@ -1,0 +1,512 @@
+{
+	"info": {
+		"_postman_id": "dfa3d4da-32cc-4866-bee4-10a1f5a67be9",
+		"name": "Pet Store Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check Response Body Values\", function () {",
+									"    pm.expect(jsonData.code).to.eql(200);",
+									"    pm.expect(jsonData.message).to.eql(\"1299\");",
+									"});",
+									"",
+									"",
+									"const schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"code\": {",
+									"            \"type\": \"integer\"",
+									"        },",
+									"        \"type\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"message\": {",
+									"            \"type\": \"string\"",
+									"        }",
+									"    },",
+									"    \"required\": [",
+									"        \"code\",",
+									"        \"type\",",
+									"        \"message\"",
+									"    ]",
+									"};",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test(\"Validate schema with tv4\", () => {",
+									"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"user_name\", \"FirstOsman\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1299,\n  \"username\": \"FirstOsman\",\n  \"firstName\": \"Osman\",\n  \"lastName\": \"Legend\",\n  \"email\": \"osman.legend@ottoman.com\",\n  \"password\": \"Great123\",\n  \"phone\": \"01299145399\",\n  \"userStatus\": 0\n}"
+						},
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check Response Body Values\", function () {",
+									"    pm.expect(jsonData.id).to.eql(1299);",
+									"    pm.expect(jsonData.username).to.eql(\"FirstOsman\");",
+									"});",
+									"",
+									"",
+									"const schema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"id\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"username\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"firstName\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"lastName\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"email\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"password\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"phone\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"userStatus\": {",
+									"      \"type\": \"integer\"",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"id\",",
+									"    \"username\",",
+									"    \"firstName\",",
+									"    \"lastName\",",
+									"    \"email\",",
+									"    \"password\",",
+									"    \"phone\",",
+									"    \"userStatus\"",
+									"  ]",
+									"};",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/{{user_name}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{user_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"user_name\", \"SecondOsman\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check Response Body Values\", function () {",
+									"    pm.expect(jsonData.code).to.eql(200);",
+									"    pm.expect(jsonData.message).to.eql(\"1299\");",
+									"});",
+									"",
+									"",
+									"const schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"code\": {",
+									"            \"type\": \"integer\"",
+									"        },",
+									"        \"type\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"message\": {",
+									"            \"type\": \"string\"",
+									"        }",
+									"    },",
+									"    \"required\": [",
+									"        \"code\",",
+									"        \"type\",",
+									"        \"message\"",
+									"    ]",
+									"};",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1299,\n  \"username\": \"SecondOsman\",\n  \"firstName\": \"Osman\",\n  \"lastName\": \"Legend\",\n  \"email\": \"osman.legend@ottoman.com\",\n  \"password\": \"Great123\",\n  \"phone\": \"01299145399\",\n  \"userStatus\": 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/user/{{user_name}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{user_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check Response Body Values\", function () {",
+									"    pm.expect(jsonData.id).to.eql(1299);",
+									"    pm.expect(jsonData.username).to.eql(\"SecondOsman\");",
+									"});",
+									"",
+									"",
+									"const schema = {",
+									"  \"type\": \"object\",",
+									"  \"properties\": {",
+									"    \"id\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"username\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"firstName\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"lastName\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"email\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"password\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"phone\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"userStatus\": {",
+									"      \"type\": \"integer\"",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"id\",",
+									"    \"username\",",
+									"    \"firstName\",",
+									"    \"lastName\",",
+									"    \"email\",",
+									"    \"password\",",
+									"    \"phone\",",
+									"    \"userStatus\"",
+									"  ]",
+									"};",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/{{user_name}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{user_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Check Response Body Values\", function () {",
+									"    pm.expect(jsonData.code).to.eql(200);",
+									"    pm.expect(jsonData.message).to.eql(\"SecondOsman\");",
+									"});",
+									"",
+									"",
+									"const schema = {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"        \"code\": {",
+									"            \"type\": \"integer\"",
+									"        },",
+									"        \"type\": {",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"message\": {",
+									"            \"type\": \"string\"",
+									"        }",
+									"    },",
+									"    \"required\": [",
+									"        \"code\",",
+									"        \"type\",",
+									"        \"message\"",
+									"    ]",
+									"};",
+									"",
+									"pm.test(\"Validate schema\", () => {",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/{{user_name}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{user_name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Check Response Body Values\", function () {",
+									"    pm.expect(jsonData.code).to.eql(1);",
+									"    pm.expect(jsonData.message).to.eql(\"User not found\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/{{user_name}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"{{user_name}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "user_id",
+			"value": "1299"
+		},
+		{
+			"key": "user_name",
+			"value": "FirstOsman"
+		},
+		{
+			"key": "url",
+			"value": "https://petstore.swagger.io/v2"
+		}
+	]
+}
