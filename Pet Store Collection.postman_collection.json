@@ -445,6 +445,9 @@
 									"    pm.expect(jsonData.message).to.eql(\"User not found\");",
 									"});",
 									"",
+									"pm.collectionVariables.unset(\"user_name\");",
+									"pm.collectionVariables.unset(\"user_id\");",
+									"",
 									""
 								],
 								"type": "text/javascript"
@@ -496,14 +499,6 @@
 		}
 	],
 	"variable": [
-		{
-			"key": "user_id",
-			"value": "1299"
-		},
-		{
-			"key": "user_name",
-			"value": "FirstOsman"
-		},
 		{
 			"key": "url",
 			"value": "https://petstore.swagger.io/v2"
