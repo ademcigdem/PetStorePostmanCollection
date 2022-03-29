@@ -1,7 +1,8 @@
 {
 	"info": {
-		"_postman_id": "dfa3d4da-32cc-4866-bee4-10a1f5a67be9",
+		"_postman_id": "ee052350-bfd9-4f60-9da0-b5f5db8dbe5b",
 		"name": "Pet Store Collection",
+		"description": "### **The Collection based on the Pet Swagger Rest Api Practice page**\n\n*   Under the collection package User flow doing user creating calls and covering the automated test by postman automation\n*   Second package has the pet flow. Creating and checking the pet status. Also provided with the automation test by Postman\n    \n\n#### **HOW TO RUN ALL COLLECTION**\n\n*   Clicking the after the collection 3 dot, clicking the '**Run Collection'** section\n*   Then click the RUN COLLECTION blue button\n*   And than check the result",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -14,6 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -55,17 +57,16 @@
 									"});",
 									"",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"pm.collectionVariables.set(\"user_name\", \"FirstOsman\");"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -95,7 +96,52 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1299,\n  \"username\": \"FirstOsman\",\n  \"firstName\": \"Osman\",\n  \"lastName\": \"Legend\",\n  \"email\": \"osman.legend@ottoman.com\",\n  \"password\": \"Great123\",\n  \"phone\": \"01299145399\",\n  \"userStatus\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/user",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"user"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				},
 				{
 					"name": "Get User",
@@ -103,6 +149,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -161,8 +208,7 @@
 									"",
 									"",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -191,17 +237,9 @@
 					"name": "Update User",
 					"event": [
 						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.collectionVariables.set(\"user_name\", \"SecondOsman\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -237,8 +275,16 @@
 									"pm.test(\"Validate schema\", () => {",
 									"    pm.response.to.have.jsonSchema(schema);",
 									"});"
-								],
-								"type": "text/javascript"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.collectionVariables.set(\"user_name\", \"SecondOsman\");"
+								]
 							}
 						}
 					],
@@ -269,7 +315,53 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 1299,\n  \"username\": \"SecondOsman\",\n  \"firstName\": \"Osman\",\n  \"lastName\": \"Legend\",\n  \"email\": \"osman.legend@ottoman.com\",\n  \"password\": \"Great123\",\n  \"phone\": \"01299145399\",\n  \"userStatus\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://petstore.swagger.io/v2/user/",
+									"protocol": "https",
+									"host": [
+										"petstore",
+										"swagger",
+										"io"
+									],
+									"path": [
+										"v2",
+										"user",
+										""
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				},
 				{
 					"name": "Get User",
@@ -277,6 +369,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -335,8 +428,7 @@
 									"",
 									"",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -367,6 +459,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -402,8 +495,7 @@
 									"pm.test(\"Validate schema\", () => {",
 									"    pm.response.to.have.jsonSchema(schema);",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -434,6 +526,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -449,8 +542,7 @@
 									"pm.collectionVariables.unset(\"user_id\");",
 									"",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -475,7 +567,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### **The Flow for the User Creating:**\n\n*   The calls are covering creating user with POST\n*   Reading the created user with GET\n*   Updating the user with PUT\n*   Again getting the updated user with GET\n*   Deleting the user with DELETE\n*   After all it's deleting and getting all deleted info with GET"
 		},
 		{
 			"name": "Pet",
@@ -491,7 +584,13 @@
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"",
 									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
 									"pm.test(\"Check Response Body Values\", function () {",
 									"    pm.expect(jsonData.id).to.eql(5354);",
 									"    pm.expect(jsonData.category.id).to.eql(50);",
@@ -502,69 +601,69 @@
 									"",
 									"",
 									"const schema = {",
-									"  \"type\": \"object\",",
-									"  \"properties\": {",
-									"    \"id\": {",
-									"      \"type\": \"integer\"",
-									"    },",
-									"    \"category\": {",
-									"      \"type\": \"object\",",
-									"      \"properties\": {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
 									"        \"id\": {",
-									"          \"type\": \"integer\"",
+									"            \"type\": \"integer\"",
+									"        },",
+									"        \"category\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"name\": {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"id\",",
+									"                \"name\"",
+									"            ]",
 									"        },",
 									"        \"name\": {",
-									"          \"type\": \"string\"",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"photoUrls\": {",
+									"            \"type\": \"array\",",
+									"            \"items\": [",
+									"                {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            ]",
+									"        },",
+									"        \"tags\": {",
+									"            \"type\": \"array\",",
+									"            \"items\": [",
+									"                {",
+									"                    \"type\": \"object\",",
+									"                    \"properties\": {",
+									"                        \"id\": {",
+									"                            \"type\": \"integer\"",
+									"                        },",
+									"                        \"name\": {",
+									"                            \"type\": \"string\"",
+									"                        }",
+									"                    },",
+									"                    \"required\": [",
+									"                        \"id\",",
+									"                        \"name\"",
+									"                    ]",
+									"                }",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"type\": \"string\"",
 									"        }",
-									"      },",
-									"      \"required\": [",
+									"    },",
+									"    \"required\": [",
 									"        \"id\",",
-									"        \"name\"",
-									"      ]",
-									"    },",
-									"    \"name\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"photoUrls\": {",
-									"      \"type\": \"array\",",
-									"      \"items\": [",
-									"        {",
-									"          \"type\": \"string\"",
-									"        }",
-									"      ]",
-									"    },",
-									"    \"tags\": {",
-									"      \"type\": \"array\",",
-									"      \"items\": [",
-									"        {",
-									"          \"type\": \"object\",",
-									"          \"properties\": {",
-									"            \"id\": {",
-									"              \"type\": \"integer\"",
-									"            },",
-									"            \"name\": {",
-									"              \"type\": \"string\"",
-									"            }",
-									"          },",
-									"          \"required\": [",
-									"            \"id\",",
-									"            \"name\"",
-									"          ]",
-									"        }",
-									"      ]",
-									"    },",
-									"    \"status\": {",
-									"      \"type\": \"string\"",
-									"    }",
-									"  },",
-									"  \"required\": [",
-									"    \"id\",",
-									"    \"category\",",
-									"    \"name\",",
-									"    \"photoUrls\",",
-									"    \"tags\",",
-									"    \"status\"",
-									"  ]",
+									"        \"category\",",
+									"        \"name\",",
+									"        \"photoUrls\",",
+									"        \"tags\",",
+									"        \"status\"",
+									"    ]",
 									"};",
 									"",
 									"pm.test(\"Validate schema\", () => {",
@@ -625,19 +724,23 @@
 									"raw": "{\n  \"id\": 0,\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"available\"\n}"
 								},
 								"url": {
-									"raw": "{{url}}/pet",
+									"raw": "https://petstore.swagger.io/v2/pet",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"petstore",
+										"swagger",
+										"io"
 									],
 									"path": [
+										"v2",
 										"pet"
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -653,6 +756,11 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
 									"pm.test(\"Check Response Body Values\", function () {",
 									"    pm.expect(jsonData.id).to.eql(5354);",
 									"    pm.expect(jsonData.category.id).to.eql(50);",
@@ -662,69 +770,69 @@
 									"",
 									"",
 									"const schema = {",
-									"  \"type\": \"object\",",
-									"  \"properties\": {",
-									"    \"id\": {",
-									"      \"type\": \"integer\"",
-									"    },",
-									"    \"category\": {",
-									"      \"type\": \"object\",",
-									"      \"properties\": {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
 									"        \"id\": {",
-									"          \"type\": \"integer\"",
+									"            \"type\": \"integer\"",
+									"        },",
+									"        \"category\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"name\": {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"id\",",
+									"                \"name\"",
+									"            ]",
 									"        },",
 									"        \"name\": {",
-									"          \"type\": \"string\"",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"photoUrls\": {",
+									"            \"type\": \"array\",",
+									"            \"items\": [",
+									"                {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            ]",
+									"        },",
+									"        \"tags\": {",
+									"            \"type\": \"array\",",
+									"            \"items\": [",
+									"                {",
+									"                    \"type\": \"object\",",
+									"                    \"properties\": {",
+									"                        \"id\": {",
+									"                            \"type\": \"integer\"",
+									"                        },",
+									"                        \"name\": {",
+									"                            \"type\": \"string\"",
+									"                        }",
+									"                    },",
+									"                    \"required\": [",
+									"                        \"id\",",
+									"                        \"name\"",
+									"                    ]",
+									"                }",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"type\": \"string\"",
 									"        }",
-									"      },",
-									"      \"required\": [",
+									"    },",
+									"    \"required\": [",
 									"        \"id\",",
-									"        \"name\"",
-									"      ]",
-									"    },",
-									"    \"name\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"photoUrls\": {",
-									"      \"type\": \"array\",",
-									"      \"items\": [",
-									"        {",
-									"          \"type\": \"string\"",
-									"        }",
-									"      ]",
-									"    },",
-									"    \"tags\": {",
-									"      \"type\": \"array\",",
-									"      \"items\": [",
-									"        {",
-									"          \"type\": \"object\",",
-									"          \"properties\": {",
-									"            \"id\": {",
-									"              \"type\": \"integer\"",
-									"            },",
-									"            \"name\": {",
-									"              \"type\": \"string\"",
-									"            }",
-									"          },",
-									"          \"required\": [",
-									"            \"id\",",
-									"            \"name\"",
-									"          ]",
-									"        }",
-									"      ]",
-									"    },",
-									"    \"status\": {",
-									"      \"type\": \"string\"",
-									"    }",
-									"  },",
-									"  \"required\": [",
-									"    \"id\",",
-									"    \"category\",",
-									"    \"name\",",
-									"    \"photoUrls\",",
-									"    \"tags\",",
-									"    \"status\"",
-									"  ]",
+									"        \"category\",",
+									"        \"name\",",
+									"        \"photoUrls\",",
+									"        \"tags\",",
+									"        \"status\"",
+									"    ]",
 									"};",
 									"",
 									"pm.test(\"Validate schema\", () => {",
@@ -772,6 +880,11 @@
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
 									"pm.test(\"Check Response Body Values\", function () {",
 									"    pm.expect(jsonData.id).to.eql(5354);",
 									"    pm.expect(jsonData.category.id).to.eql(50);",
@@ -782,69 +895,69 @@
 									"",
 									"",
 									"const schema = {",
-									"  \"type\": \"object\",",
-									"  \"properties\": {",
-									"    \"id\": {",
-									"      \"type\": \"integer\"",
-									"    },",
-									"    \"category\": {",
-									"      \"type\": \"object\",",
-									"      \"properties\": {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
 									"        \"id\": {",
-									"          \"type\": \"integer\"",
+									"            \"type\": \"integer\"",
+									"        },",
+									"        \"category\": {",
+									"            \"type\": \"object\",",
+									"            \"properties\": {",
+									"                \"id\": {",
+									"                    \"type\": \"integer\"",
+									"                },",
+									"                \"name\": {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            },",
+									"            \"required\": [",
+									"                \"id\",",
+									"                \"name\"",
+									"            ]",
 									"        },",
 									"        \"name\": {",
-									"          \"type\": \"string\"",
+									"            \"type\": \"string\"",
+									"        },",
+									"        \"photoUrls\": {",
+									"            \"type\": \"array\",",
+									"            \"items\": [",
+									"                {",
+									"                    \"type\": \"string\"",
+									"                }",
+									"            ]",
+									"        },",
+									"        \"tags\": {",
+									"            \"type\": \"array\",",
+									"            \"items\": [",
+									"                {",
+									"                    \"type\": \"object\",",
+									"                    \"properties\": {",
+									"                        \"id\": {",
+									"                            \"type\": \"integer\"",
+									"                        },",
+									"                        \"name\": {",
+									"                            \"type\": \"string\"",
+									"                        }",
+									"                    },",
+									"                    \"required\": [",
+									"                        \"id\",",
+									"                        \"name\"",
+									"                    ]",
+									"                }",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"type\": \"string\"",
 									"        }",
-									"      },",
-									"      \"required\": [",
+									"    },",
+									"    \"required\": [",
 									"        \"id\",",
-									"        \"name\"",
-									"      ]",
-									"    },",
-									"    \"name\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"photoUrls\": {",
-									"      \"type\": \"array\",",
-									"      \"items\": [",
-									"        {",
-									"          \"type\": \"string\"",
-									"        }",
-									"      ]",
-									"    },",
-									"    \"tags\": {",
-									"      \"type\": \"array\",",
-									"      \"items\": [",
-									"        {",
-									"          \"type\": \"object\",",
-									"          \"properties\": {",
-									"            \"id\": {",
-									"              \"type\": \"integer\"",
-									"            },",
-									"            \"name\": {",
-									"              \"type\": \"string\"",
-									"            }",
-									"          },",
-									"          \"required\": [",
-									"            \"id\",",
-									"            \"name\"",
-									"          ]",
-									"        }",
-									"      ]",
-									"    },",
-									"    \"status\": {",
-									"      \"type\": \"string\"",
-									"    }",
-									"  },",
-									"  \"required\": [",
-									"    \"id\",",
-									"    \"category\",",
-									"    \"name\",",
-									"    \"photoUrls\",",
-									"    \"tags\",",
-									"    \"status\"",
-									"  ]",
+									"        \"category\",",
+									"        \"name\",",
+									"        \"photoUrls\",",
+									"        \"tags\",",
+									"        \"status\"",
+									"    ]",
 									"};",
 									"",
 									"pm.test(\"Validate schema\", () => {",
@@ -912,19 +1025,23 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/pet",
+									"raw": "https://petstore.swagger.io/v2/pet",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"petstore",
+										"swagger",
+										"io"
 									],
 									"path": [
+										"v2",
 										"pet"
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -939,6 +1056,9 @@
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"pm.test(\"Check Response Body Values\", function () {",
 									"    pm.expect(jsonData.id).to.eql(5354);",
@@ -1053,6 +1173,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"type": "text/javascript",
 								"exec": [
 									"const jsonData = pm.response.json();",
 									"",
@@ -1063,8 +1184,7 @@
 									"    pm.expect(jsonData.code).to.eql(200);",
 									"    pm.expect(jsonData.message).to.eql(\"5354\");",
 									"});"
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
@@ -1099,20 +1219,24 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/pet/{{pet_id}}",
+									"raw": "https://petstore.swagger.io/v2/pet/",
+									"protocol": "https",
 									"host": [
-										"{{url}}"
+										"petstore",
+										"swagger",
+										"io"
 									],
 									"path": [
+										"v2",
 										"pet",
-										"{{pet_id}}"
+										""
 									]
 								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"_postman_previewlanguage": "Text",
+							"header": [],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -1127,6 +1251,9 @@
 									"",
 									"pm.test(\"Status code is 404\", function () {",
 									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
 									"});",
 									"pm.test(\"Check Response Body Values\", function () {",
 									"    pm.expect(jsonData.code).to.eql(1);",
@@ -1161,7 +1288,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "#### **Pet Flow Documentation:**\n\n*   The package covering the creating pet with POST\n*   Checking the created pet using GET\n*   Updating the existing pet with PUT\n*   Checking correct pet updated successfully with GET\n*   Deleting after all step creation done with DELETE\n*   And checking no data related with the cases with GET"
 		}
 	],
 	"event": [
@@ -1191,6 +1319,10 @@
 		},
 		{
 			"key": "pet_id",
+			"value": ""
+		},
+		{
+			"key": "user_name",
 			"value": ""
 		}
 	]
